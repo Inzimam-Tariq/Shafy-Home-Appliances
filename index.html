@@ -602,11 +602,9 @@
       renderProducts(data);
     }
 
-    // ── BUILD CATEGORY FILTERS ──
     function buildCategoryFilters(products) {
-      const cats = [...new Set(products.flatMap(p => p.categories || []))].sort();
+      const cats = [...new Set(products.flatMap(p => Array.isArray(p.categories) ? p.categories : []))].sort();
       const bar = document.getElementById('filterBar');
-      // Remove old dynamic buttons first
       bar.querySelectorAll('[data-cat]:not([data-cat="all"])').forEach(b => b.remove());
       cats.forEach(cat => {
         const btn = document.createElement('button');
@@ -625,10 +623,9 @@
       });
       const filtered = cat === 'all'
         ? allProducts
-        : allProducts.filter(p => (p.categories || []).join(' ').toLowerCase().includes(cat));
+        : allProducts.filter(p => Array.isArray(p.categories) && p.categories.includes(cat));
       renderProducts(filtered);
     }
-
     // ── RENDER PRODUCTS ──
     function renderProducts(products) {
       const grid = document.getElementById('productsGrid');
