@@ -625,7 +625,7 @@
       });
       const filtered = cat === 'all'
         ? allProducts
-        : allProducts.filter(p => (p.categories || []).join(' ').toLowerCase().includes(q);
+        : allProducts.filter(p => (p.categories || []).join(' ').toLowerCase().includes(q));
       renderProducts(filtered);
     }
 
