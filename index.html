@@ -652,7 +652,7 @@
             ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}
           </div>
           <div class="card-body">
-            ${p.category ? `<div class="card-category">${p.category}</div>` : ''}
+            ${(p.categories && p.categories.length) ? `<div class="card-category">${p.categories.join(', ')}</div>` : ''}
             <div class="card-title">${p.name}</div>
             <div class="card-desc">${p.description || ''}</div>
             <div class="card-footer-row">
@@ -675,8 +675,8 @@
       document.getElementById('modalTitle').textContent = p.name;
       document.getElementById('modalPrice').textContent = `PKR ${Number(p.price).toLocaleString()}`;
       document.getElementById('modalDesc').textContent = p.description || '';
-      document.getElementById('modalCategoryBadge').innerHTML = p.category
-        ? `<span class="modal-category-badge">${p.category}</span>` : '';
+      document.getElementById('modalCategoryBadge').innerHTML = (p.categories && p.categories.length)
+        ? p.categories.map(c => `<span class="modal-category-badge">${c}</span>`).join(' ') : '';
       document.getElementById('modalImgWrap').innerHTML = p.image_url
         ? `<img src="${p.image_url}" class="modal-product-img" alt="${p.name}"/>`
         : `<div class="modal-product-img-placeholder"><i class="bi bi-image"></i></div>`;
@@ -692,7 +692,7 @@
       const filtered = allProducts.filter(p =>
         p.name.toLowerCase().includes(q) ||
         (p.description || '').toLowerCase().includes(q) ||
-        (p.category || '').toLowerCase().includes(q)
+        (p.categories || []).join(' ').toLowerCase().includes(q)
       );
       renderProducts(filtered);
     });
