@@ -218,36 +218,58 @@
       font-size: 1.4rem;
       color: #fff;
       padding: 0.5rem 0.75rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       margin-bottom: 1rem;
     }
-    .sidebar-logo span { color: var(--accent); }
+
+    .sidebar-logo span {
+      color: var(--accent);
+    }
+
     .sidebar-label {
       font-size: 0.65rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255, 255, 255, 0.25);
       padding: 0 0.75rem;
       margin-bottom: 0.4rem;
     }
+
     .sidebar-link {
-      display: flex; align-items: center; gap: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
       padding: 0.6rem 0.75rem;
       border-radius: 7px;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255, 255, 255, 0.55);
       font-size: 0.88rem;
       text-decoration: none;
       transition: all 0.18s;
       cursor: pointer;
-      border: none; background: none; width: 100%; text-align: left;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
     }
-    .sidebar-link:hover, .sidebar-link.active {
-      background: rgba(255,255,255,0.07);
+
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      background: rgba(255, 255, 255, 0.07);
       color: #fff;
     }
-    .sidebar-link.active { color: var(--accent); }
-    .sidebar-link i { font-size: 1.1rem; width: 20px; }
-    .sidebar-bottom { margin-top: auto; }
+
+    .sidebar-link.active {
+      color: var(--accent);
+    }
+
+    .sidebar-link i {
+      font-size: 1.1rem;
+      width: 20px;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+    }
 
     /* ── TOP BAR ── */
     .topbar {
@@ -659,8 +681,22 @@
               <input type="number" class="form-control" id="fPrice" placeholder="0" />
             </div>
             <div class="col-12 col-md-6">
-              <label class="form-label">Category</label>
-              <input type="text" class="form-control" id="fCategory" placeholder="e.g. Bags, Electronics…" />
+              <label class="form-label">
+                Categories
+                <span style="font-weight:300; color:var(--muted)"> — type and press Enter or comma to add</span>
+              </label>
+              <div id="tagContainer" style="
+                display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+                border:1px solid var(--border); border-radius:7px;
+                padding:0.45rem 0.7rem; background:#fff; min-height:42px;
+                cursor:text;
+                " onclick="document.getElementById('tagInput').focus()">
+                <input id="tagInput" type="text" placeholder="e.g. Electronics…" style="
+                  border:none; outline:none; font-family:'DM Sans',sans-serif;
+                  font-size:0.9rem; flex:1; min-width:120px; background:transparent;
+                " onkeydown="handleTagKey(event)" oninput="this.style.width=(this.value.length+2)+'ch'" />
+              </div>
+              <input type="hidden" id="fCategory" />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label">Badge Label <span style="color:var(--muted);font-weight:300">(optional, e.g.
@@ -672,11 +708,28 @@
               <textarea class="form-control" id="fDesc" rows="3" placeholder="Short product description…"></textarea>
             </div>
             <div class="col-12">
-              <label class="form-label">Image URL <span style="color:var(--muted);font-weight:300">(paste a direct image
-                  link)</span></label>
-              <input type="url" class="form-control" id="fImage" placeholder="https://example.com/image.jpg"
-                oninput="previewImg(this.value)" />
-              <img id="imgPreview" alt="Preview" />
+              <label class="form-label">Product Image</label>
+              <div id="uploadArea" style="
+                  border: 2px dashed var(--border); border-radius: 7px;
+                  padding: 1.5rem; text-align: center; cursor: pointer;
+                  transition: border-color 0.2s; background: #faf8f4;
+                " onclick="document.getElementById('fImageFile').click()"
+                ondragover="event.preventDefault(); this.style.borderColor='var(--accent)'"
+                ondragleave="this.style.borderColor='var(--border)'" ondrop="handleDrop(event)">
+                <i class="bi bi-cloud-arrow-up" style="font-size:2rem; color:var(--muted)"></i>
+                <div style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem">
+                  Click or drag & drop an image here
+                </div>
+                <div id="uploadStatus" style="font-size:0.8rem; margin-top:0.4rem; color:var(--accent)"></div>
+              </div>
+              <input type="file" id="fImageFile" accept="image/*" style="display:none"
+                onchange="handleFileSelect(this.files[0])" />
+              <input type="hidden" id="fImage" />
+              <img id="imgPreview" alt="Preview" style="
+                  width:100%; max-height:180px; object-fit:cover;
+                  border-radius:7px; border:1px solid var(--border);
+                  display:none; margin-top:0.5rem;
+                " />
             </div>
             <div class="col-12">
               <label class="form-label d-flex align-items-center gap-2">
@@ -841,7 +894,7 @@
       const payload = {
         name,
         price,
-        category: document.getElementById('fCategory').value.trim() || null,
+        categories: currentTags,
         description: document.getElementById('fDesc').value.trim() || null,
         image_url: document.getElementById('fImage').value.trim() || null,
         badge: document.getElementById('fBadge').value.trim() || null,
@@ -870,7 +923,7 @@
       document.getElementById('editId').value = p.id;
       document.getElementById('fName').value = p.name;
       document.getElementById('fPrice').value = p.price;
-      document.getElementById('fCategory').value = p.category || '';
+      setTags(p.categories || []);
       document.getElementById('fDesc').value = p.description || '';
       document.getElementById('fImage').value = p.image_url || '';
       document.getElementById('fBadge').value = p.badge || '';
@@ -895,25 +948,90 @@
       await loadAllProducts();
     }
 
-    // ── RESET FORM ──
+    // ── IMAGE UPLOAD ──
+    async function handleFileSelect(file) {
+      if (!file) return;
+      await uploadImage(file);
+    }
+    function handleDrop(e) {
+      e.preventDefault();
+      document.getElementById('uploadArea').style.borderColor = 'var(--border)';
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) uploadImage(file);
+    }
+    async function uploadImage(file) {
+      const status = document.getElementById('uploadStatus');
+      status.textContent = 'Uploading…';
+      const ext = file.name.split('.').pop();
+      const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { data, error } = await db.storage.from('products').upload(path, file, { upsert: true });
+      if (error) { status.textContent = 'Upload failed: ' + error.message; return; }
+      const { data: urlData } = db.storage.from('products').getPublicUrl(path);
+      document.getElementById('fImage').value = urlData.publicUrl;
+      status.textContent = '✓ Uploaded';
+      previewImg(urlData.publicUrl);
+    }
+    function previewImg(url) {
+      const img = document.getElementById('imgPreview');
+      img.style.display = url ? 'block' : 'none';
+      if (url) img.src = url;
+    }
+
+    // ── CATEGORY TAGS ──
+    let currentTags = [];
+    function handleTagKey(e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        const val = e.target.value.trim().replace(/,$/, '');
+        if (val && !currentTags.includes(val)) addTag(val);
+        e.target.value = '';
+      } else if (e.key === 'Backspace' && !e.target.value && currentTags.length) {
+        removeTag(currentTags[currentTags.length - 1]);
+      }
+    }
+    function addTag(val) {
+      currentTags.push(val);
+      renderTags();
+      syncTagsToInput();
+    }
+    function removeTag(val) {
+      currentTags = currentTags.filter(t => t !== val);
+      renderTags();
+      syncTagsToInput();
+    }
+    function renderTags() {
+      const input = document.getElementById('tagInput');
+      document.querySelectorAll('.tag-chip').forEach(el => el.remove());
+      currentTags.forEach(tag => {
+        const chip = document.createElement('span');
+        chip.className = 'tag-chip';
+        chip.style.cssText = `
+      background:var(--accent-lt); color:var(--accent);
+      border-radius:20px; padding:2px 10px; font-size:0.78rem;
+      display:inline-flex; align-items:center; gap:5px; font-weight:500;
+    `;
+        chip.innerHTML = `${tag} <span style="cursor:pointer;font-size:1rem;line-height:1" onclick="removeTag('${tag}')">×</span>`;
+        document.getElementById('tagContainer').insertBefore(chip, input);
+      });
+    }
+    function syncTagsToInput() {
+      document.getElementById('fCategory').value = currentTags.join(',');
+    }
+    function setTags(arr) {
+      currentTags = arr || [];
+      renderTags();
+      syncTagsToInput();
+    }
+
     function resetForm() {
-      ['editId', 'fName', 'fPrice', 'fCategory', 'fDesc', 'fImage', 'fBadge'].forEach(id => {
+      ['editId', 'fName', 'fPrice', 'fDesc', 'fImage', 'fBadge'].forEach(id => {
         document.getElementById(id).value = '';
       });
       document.getElementById('fPublished').checked = true;
       document.getElementById('formSectionTitle').textContent = 'Add Product';
       document.getElementById('imgPreview').style.display = 'none';
-    }
-
-    // ── IMAGE PREVIEW ──
-    function previewImg(url) {
-      const img = document.getElementById('imgPreview');
-      if (url && url.startsWith('http')) {
-        img.src = url;
-        img.style.display = 'block';
-      } else {
-        img.style.display = 'none';
-      }
+      document.getElementById('uploadStatus').textContent = '';
+      setTags([]);
     }
 
     // ── TOAST ──

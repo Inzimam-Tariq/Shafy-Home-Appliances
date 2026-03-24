@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shafy Home Appliances</title>
 
   <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
-      --ink:        #0f0e0c;
-      --cream:      #f5f0e8;
-      --accent:     #c8502a;
-      --accent-lt:  #f0d9d0;
-      --muted:      #7a7468;
-      --card-bg:    #ffffff;
-      --border:     #e2dbd0;
+      --ink: #0f0e0c;
+      --cream: #f5f0e8;
+      --accent: #c8502a;
+      --accent-lt: #f0d9d0;
+      --muted: #7a7468;
+      --card-bg: #ffffff;
+      --border: #e2dbd0;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -41,16 +46,21 @@
       z-index: 100;
       border-bottom: 3px solid var(--accent);
     }
+
     .navbar-brand {
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       color: var(--cream) !important;
       letter-spacing: -0.5px;
     }
-    .navbar-brand span { color: var(--accent); }
+
+    .navbar-brand span {
+      color: var(--accent);
+    }
+
     .nav-search {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 6px;
       color: #fff;
       padding: 0.4rem 1rem;
@@ -59,10 +69,14 @@
       font-size: 0.9rem;
       transition: all 0.2s;
     }
-    .nav-search::placeholder { color: rgba(255,255,255,0.4); }
+
+    .nav-search::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
     .nav-search:focus {
       outline: none;
-      background: rgba(255,255,255,0.13);
+      background: rgba(255, 255, 255, 0.13);
       border-color: var(--accent);
       color: #fff;
     }
@@ -75,14 +89,18 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero::before {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, rgba(200,80,42,0.18) 0%, transparent 70%);
+      top: -60px;
+      right: -60px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(200, 80, 42, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
+
     .hero-label {
       font-size: 0.75rem;
       font-weight: 500;
@@ -91,6 +109,7 @@
       color: var(--accent);
       margin-bottom: 1rem;
     }
+
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.8rem, 6vw, 5rem);
@@ -98,8 +117,9 @@
       line-height: 1.05;
       margin-bottom: 1.2rem;
     }
+
     .hero p {
-      color: rgba(245,240,232,0.65);
+      color: rgba(245, 240, 232, 0.65);
       font-size: 1.1rem;
       max-width: 480px;
       font-weight: 300;
@@ -115,6 +135,7 @@
       flex-wrap: wrap;
       align-items: center;
     }
+
     .filter-label {
       font-size: 0.75rem;
       font-weight: 500;
@@ -123,6 +144,7 @@
       color: var(--muted);
       margin-right: 0.5rem;
     }
+
     .filter-btn {
       background: transparent;
       border: 1px solid var(--border);
@@ -134,14 +156,18 @@
       cursor: pointer;
       transition: all 0.18s;
     }
-    .filter-btn:hover, .filter-btn.active {
+
+    .filter-btn:hover,
+    .filter-btn.active {
       background: var(--ink);
       border-color: var(--ink);
       color: #fff;
     }
 
     /* ── PRODUCTS SECTION ── */
-    .products-section { padding: 3rem 2rem 5rem; }
+    .products-section {
+      padding: 3rem 2rem 5rem;
+    }
 
     .section-header {
       display: flex;
@@ -149,11 +175,13 @@
       gap: 1rem;
       margin-bottom: 2rem;
     }
+
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
       font-weight: 700;
     }
+
     .product-count {
       font-size: 0.82rem;
       color: var(--muted);
@@ -172,31 +200,44 @@
       flex-direction: column;
       height: 100%;
     }
+
     .product-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(15,14,12,0.12);
+      box-shadow: 0 16px 40px rgba(15, 14, 12, 0.12);
     }
+
     .card-img-wrap {
       position: relative;
       background: var(--accent-lt);
       overflow: hidden;
       aspect-ratio: 4/3;
     }
+
     .card-img-wrap img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       transition: transform 0.35s;
     }
-    .product-card:hover .card-img-wrap img { transform: scale(1.05); }
+
+    .product-card:hover .card-img-wrap img {
+      transform: scale(1.05);
+    }
+
     .card-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent);
       font-size: 3rem;
     }
+
     .card-badge {
       position: absolute;
-      top: 12px; left: 12px;
+      top: 12px;
+      left: 12px;
       background: var(--accent);
       color: #fff;
       font-size: 0.68rem;
@@ -206,12 +247,14 @@
       padding: 3px 10px;
       border-radius: 3px;
     }
+
     .card-body {
       padding: 1.2rem 1.3rem 1.4rem;
       display: flex;
       flex-direction: column;
       flex: 1;
     }
+
     .card-category {
       font-size: 0.72rem;
       font-weight: 500;
@@ -220,6 +263,7 @@
       color: var(--accent);
       margin-bottom: 0.4rem;
     }
+
     .card-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
@@ -227,6 +271,7 @@
       margin-bottom: 0.4rem;
       line-height: 1.3;
     }
+
     .card-desc {
       font-size: 0.85rem;
       color: var(--muted);
@@ -235,23 +280,27 @@
       flex: 1;
       margin-bottom: 1rem;
     }
+
     .card-footer-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-top: auto;
     }
+
     .card-price {
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--ink);
     }
+
     .card-price .currency {
       font-size: 0.85rem;
       font-weight: 400;
       color: var(--muted);
       margin-right: 2px;
     }
+
     .btn-view {
       background: var(--ink);
       color: var(--cream);
@@ -263,7 +312,11 @@
       font-weight: 500;
       transition: background 0.18s;
     }
-    .btn-view:hover { background: var(--accent); color: #fff; }
+
+    .btn-view:hover {
+      background: var(--accent);
+      color: #fff;
+    }
 
     /* ── EMPTY STATE ── */
     .empty-state {
@@ -271,8 +324,18 @@
       padding: 5rem 2rem;
       color: var(--muted);
     }
-    .empty-state i { font-size: 3.5rem; margin-bottom: 1rem; display: block; opacity: 0.3; }
-    .empty-state h4 { font-family: 'Playfair Display', serif; color: var(--ink); }
+
+    .empty-state i {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0.3;
+    }
+
+    .empty-state h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--ink);
+    }
 
     /* ── SKELETON LOADER ── */
     .skeleton {
@@ -281,11 +344,35 @@
       animation: shimmer 1.4s infinite;
       border-radius: 6px;
     }
-    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-    .sk-img { aspect-ratio:4/3; border-radius: 10px 10px 0 0; }
-    .sk-line { height: 14px; margin-bottom: 8px; }
-    .sk-line.short { width: 60%; }
-    .sk-price { height: 22px; width: 80px; }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0
+      }
+
+      100% {
+        background-position: -200% 0
+      }
+    }
+
+    .sk-img {
+      aspect-ratio: 4/3;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .sk-line {
+      height: 14px;
+      margin-bottom: 8px;
+    }
+
+    .sk-line.short {
+      width: 60%;
+    }
+
+    .sk-price {
+      height: 22px;
+      width: 80px;
+    }
 
     /* ── MODAL ── */
     .modal-content {
@@ -293,24 +380,45 @@
       border-radius: 12px;
       overflow: hidden;
     }
+
     .modal-product-img {
       width: 100%;
       aspect-ratio: 16/9;
       object-fit: cover;
       background: var(--accent-lt);
     }
+
     .modal-product-img-placeholder {
       width: 100%;
       aspect-ratio: 16/9;
       background: var(--accent-lt);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent);
       font-size: 5rem;
     }
-    .modal-header { border-bottom: 1px solid var(--border); padding: 1.2rem 1.5rem; }
-    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
-    .modal-body { padding: 1.5rem; }
-    .modal-price { font-size: 2rem; font-weight: 700; color: var(--accent); }
+
+    .modal-header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 1.5rem;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    .modal-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
     .modal-category-badge {
       background: var(--accent-lt);
       color: var(--accent);
@@ -327,12 +435,16 @@
     /* ── FOOTER ── */
     footer {
       background: var(--ink);
-      color: rgba(245,240,232,0.5);
+      color: rgba(245, 240, 232, 0.5);
       text-align: center;
       padding: 2rem;
       font-size: 0.82rem;
     }
-    footer a { color: var(--accent); text-decoration: none; }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
     /* ── FADE IN ── */
     .fade-in {
@@ -340,172 +452,206 @@
       transform: translateY(18px);
       animation: fadeUp 0.45s forwards;
     }
-    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-dark">
-  <div class="container-fluid d-flex align-items-center justify-content-between">
-    <a class="navbar-brand" href="#">Shafy<span> Home</span> Appliances</a>
-    <input class="nav-search" type="text" id="searchInput" placeholder="&#x1F50D;  Search products…"/>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container-fluid" style="max-width:1200px">
-    <div class="hero-label">Welcome to Shafy Home Appliances</div>
-    <h1>Products<br/>Worth Owning.</h1>
-    <p>Carefully selected items, updated regularly. Browse our latest collection below. Contact number 0307-8894394, 0370-5377607</p>
-  </div>
-</section>
-
-<!-- FILTER BAR -->
-<div class="filter-bar" id="filterBar">
-  <span class="filter-label">Filter:</span>
-  <button class="filter-btn active" data-cat="all">All</button>
-</div>
-
-<!-- PRODUCTS -->
-<section class="products-section">
-  <div class="container-fluid" style="max-width:1200px">
-    <div class="section-header">
-      <span class="section-title">All Products</span>
-      <span class="product-count" id="productCount"></span>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="#">Shafy<span> Home</span> Appliances</a>
+      <input class="nav-search" type="text" id="searchInput" placeholder="&#x1F50D;  Search products…" />
     </div>
-    <div class="row g-4" id="productsGrid">
-      <!-- Skeleton loaders -->
-      <div class="col-12 col-sm-6 col-lg-4" id="sk1">
-        <div class="product-card"><div class="skeleton sk-img"></div><div class="card-body"><div class="skeleton sk-line short mb-2"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line"></div><div class="skeleton sk-price mt-3"></div></div></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container-fluid" style="max-width:1200px">
+      <div class="hero-label">Welcome to Shafy Home Appliances</div>
+      <h1>Products<br />Worth Owning.</h1>
+      <p>Carefully selected items, updated regularly. Browse our latest collection below. Contact number 0307-8894394,
+        0370-5377607</p>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" id="filterBar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-cat="all">All</button>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section class="products-section">
+    <div class="container-fluid" style="max-width:1200px">
+      <div class="section-header">
+        <span class="section-title">All Products</span>
+        <span class="product-count" id="productCount"></span>
       </div>
-      <div class="col-12 col-sm-6 col-lg-4" id="sk2">
-        <div class="product-card"><div class="skeleton sk-img"></div><div class="card-body"><div class="skeleton sk-line short mb-2"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line"></div><div class="skeleton sk-price mt-3"></div></div></div>
+      <div class="row g-4" id="productsGrid">
+        <!-- Skeleton loaders -->
+        <div class="col-12 col-sm-6 col-lg-4" id="sk1">
+          <div class="product-card">
+            <div class="skeleton sk-img"></div>
+            <div class="card-body">
+              <div class="skeleton sk-line short mb-2"></div>
+              <div class="skeleton sk-line"></div>
+              <div class="skeleton sk-line"></div>
+              <div class="skeleton sk-price mt-3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4" id="sk2">
+          <div class="product-card">
+            <div class="skeleton sk-img"></div>
+            <div class="card-body">
+              <div class="skeleton sk-line short mb-2"></div>
+              <div class="skeleton sk-line"></div>
+              <div class="skeleton sk-line"></div>
+              <div class="skeleton sk-price mt-3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4" id="sk3">
+          <div class="product-card">
+            <div class="skeleton sk-img"></div>
+            <div class="card-body">
+              <div class="skeleton sk-line short mb-2"></div>
+              <div class="skeleton sk-line"></div>
+              <div class="skeleton sk-line"></div>
+              <div class="skeleton sk-price mt-3"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-12 col-sm-6 col-lg-4" id="sk3">
-        <div class="product-card"><div class="skeleton sk-img"></div><div class="card-body"><div class="skeleton sk-line short mb-2"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line"></div><div class="skeleton sk-price mt-3"></div></div></div>
+    </div>
+  </section>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div id="modalImgWrap"></div>
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="modalCategoryBadge"></div>
+          <div class="modal-price mb-3" id="modalPrice"></div>
+          <p id="modalDesc" style="color:var(--muted);font-weight:300;line-height:1.7"></p>
+          <div id="modalMeta" class="mt-3" style="font-size:0.82rem;color:var(--muted)"></div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- PRODUCT DETAIL MODAL -->
-<div class="modal fade" id="productModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div id="modalImgWrap"></div>
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTitle"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div id="modalCategoryBadge"></div>
-        <div class="modal-price mb-3" id="modalPrice"></div>
-        <p id="modalDesc" style="color:var(--muted);font-weight:300;line-height:1.7"></p>
-        <div id="modalMeta" class="mt-3" style="font-size:0.82rem;color:var(--muted)"></div>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    <p class="mb-1">© 2026 Shafy Home Appliances. All rights reserved. Contact number: 0307-8894394, 0370-5377607</p>
+    <p class="mb-0"><a href="admin.html">Admin Panel</a></p>
+  </footer>
 
-<!-- FOOTER -->
-<footer>
-  <p class="mb-1">© 2026 Shafy Home Appliances. All rights reserved. Contact number: 0307-8894394, 0370-5377607</p>
-  <p class="mb-0"><a href="admin.html">Admin Panel</a></p>
-</footer>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Config -->
+  <script src="js/config.js"></script>
 
-<!-- Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Config -->
-<script src="js/config.js"></script>
+  <script>
+    const { createClient } = supabase;
+    const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-<script>
-  const { createClient } = supabase;
-  const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    let allProducts = [];
+    let activeCategory = 'all';
 
-  let allProducts = [];
-  let activeCategory = 'all';
+    // ── LOAD PRODUCTS ──
+    async function loadProducts() {
+      const { data, error } = await db
+        .from('products')
+        .select('*')
+        .eq('published', true)
+        .order('created_at', { ascending: false });
 
-  // ── LOAD PRODUCTS ──
-  async function loadProducts() {
-    const { data, error } = await db
-      .from('products')
-      .select('*')
-      .eq('published', true)
-      .order('created_at', { ascending: false });
+      // Remove skeletons
+      ['sk1', 'sk2', 'sk3'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+      });
 
-    // Remove skeletons
-    ['sk1','sk2','sk3'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.remove();
-    });
-
-    if (error || !data) {
-      document.getElementById('productsGrid').innerHTML = `
+      if (error || !data) {
+        document.getElementById('productsGrid').innerHTML = `
         <div class="col-12 empty-state">
           <i class="bi bi-exclamation-circle"></i>
           <h4>Could not load products</h4>
           <p>Please check your Supabase configuration in js/config.js</p>
         </div>`;
-      return;
+        return;
+      }
+
+      allProducts = data;
+      buildCategoryFilters(data);
+      renderProducts(data);
     }
 
-    allProducts = data;
-    buildCategoryFilters(data);
-    renderProducts(data);
-  }
+    // ── BUILD CATEGORY FILTERS ──
+    function buildCategoryFilters(products) {
+      const cats = [...new Set(products.flatMap(p => p.categories || []))].sort();
+      const bar = document.getElementById('filterBar');
+      // Remove old dynamic buttons first
+      bar.querySelectorAll('[data-cat]:not([data-cat="all"])').forEach(b => b.remove());
+      cats.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.dataset.cat = cat;
+        btn.textContent = cat;
+        btn.onclick = () => setFilter(cat);
+        bar.appendChild(btn);
+      });
+    }
 
-  // ── BUILD CATEGORY FILTERS ──
-  function buildCategoryFilters(products) {
-    const cats = [...new Set(products.map(p => p.category).filter(Boolean))];
-    const bar = document.getElementById('filterBar');
-    cats.forEach(cat => {
-      const btn = document.createElement('button');
-      btn.className = 'filter-btn';
-      btn.dataset.cat = cat;
-      btn.textContent = cat;
-      btn.onclick = () => setFilter(cat);
-      bar.appendChild(btn);
-    });
-  }
+    function setFilter(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.cat === cat);
+      });
+      const filtered = cat === 'all'
+        ? allProducts
+        : allProducts.filter(p => (p.categories || []).join(' ').toLowerCase().includes(q);
+      renderProducts(filtered);
+    }
 
-  function setFilter(cat) {
-    activeCategory = cat;
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.cat === cat);
-    });
-    const filtered = cat === 'all'
-      ? allProducts
-      : allProducts.filter(p => p.category === cat);
-    renderProducts(filtered);
-  }
+    // ── RENDER PRODUCTS ──
+    function renderProducts(products) {
+      const grid = document.getElementById('productsGrid');
+      const count = document.getElementById('productCount');
+      count.textContent = `${products.length} item${products.length !== 1 ? 's' : ''}`;
 
-  // ── RENDER PRODUCTS ──
-  function renderProducts(products) {
-    const grid = document.getElementById('productsGrid');
-    const count = document.getElementById('productCount');
-    count.textContent = `${products.length} item${products.length !== 1 ? 's' : ''}`;
-
-    if (products.length === 0) {
-      grid.innerHTML = `
+      if (products.length === 0) {
+        grid.innerHTML = `
         <div class="col-12 empty-state">
           <i class="bi bi-bag-x"></i>
           <h4>No products found</h4>
           <p>Try a different filter or check back later.</p>
         </div>`;
-      return;
-    }
+        return;
+      }
 
-    grid.innerHTML = products.map((p, i) => `
+      grid.innerHTML = products.map((p, i) => `
       <div class="col-12 col-sm-6 col-lg-4 fade-in" style="animation-delay:${i * 0.07}s">
         <div class="product-card" onclick="openModal(${p.id})">
           <div class="card-img-wrap">
             ${p.image_url
-              ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy"/>`
-              : `<div class="card-img-placeholder"><i class="bi bi-image"></i></div>`}
+          ? `<img src="${p.image_url}" alt="${p.name}" loading="lazy"/>`
+          : `<div class="card-img-placeholder"><i class="bi bi-image"></i></div>`}
             ${p.badge ? `<span class="card-badge">${p.badge}</span>` : ''}
           </div>
           <div class="card-body">
@@ -522,39 +668,40 @@
         </div>
       </div>
     `).join('');
-  }
+    }
 
-  // ── MODAL ──
-  function openModal(id) {
-    const p = allProducts.find(x => x.id === id);
-    if (!p) return;
+    // ── MODAL ──
+    function openModal(id) {
+      const p = allProducts.find(x => x.id === id);
+      if (!p) return;
 
-    document.getElementById('modalTitle').textContent = p.name;
-    document.getElementById('modalPrice').textContent = `PKR ${Number(p.price).toLocaleString()}`;
-    document.getElementById('modalDesc').textContent = p.description || '';
-    document.getElementById('modalCategoryBadge').innerHTML = p.category
-      ? `<span class="modal-category-badge">${p.category}</span>` : '';
-    document.getElementById('modalImgWrap').innerHTML = p.image_url
-      ? `<img src="${p.image_url}" class="modal-product-img" alt="${p.name}"/>`
-      : `<div class="modal-product-img-placeholder"><i class="bi bi-image"></i></div>`;
-    document.getElementById('modalMeta').innerHTML = p.created_at
-      ? `Added on ${new Date(p.created_at).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})}` : '';
+      document.getElementById('modalTitle').textContent = p.name;
+      document.getElementById('modalPrice').textContent = `PKR ${Number(p.price).toLocaleString()}`;
+      document.getElementById('modalDesc').textContent = p.description || '';
+      document.getElementById('modalCategoryBadge').innerHTML = p.category
+        ? `<span class="modal-category-badge">${p.category}</span>` : '';
+      document.getElementById('modalImgWrap').innerHTML = p.image_url
+        ? `<img src="${p.image_url}" class="modal-product-img" alt="${p.name}"/>`
+        : `<div class="modal-product-img-placeholder"><i class="bi bi-image"></i></div>`;
+      document.getElementById('modalMeta').innerHTML = p.created_at
+        ? `Added on ${new Date(p.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}` : '';
 
-    new bootstrap.Modal(document.getElementById('productModal')).show();
-  }
+      new bootstrap.Modal(document.getElementById('productModal')).show();
+    }
 
-  // ── SEARCH ──
-  document.getElementById('searchInput').addEventListener('input', function() {
-    const q = this.value.toLowerCase();
-    const filtered = allProducts.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      (p.description || '').toLowerCase().includes(q) ||
-      (p.category || '').toLowerCase().includes(q)
-    );
-    renderProducts(filtered);
-  });
+    // ── SEARCH ──
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const q = this.value.toLowerCase();
+      const filtered = allProducts.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        (p.description || '').toLowerCase().includes(q) ||
+        (p.category || '').toLowerCase().includes(q)
+      );
+      renderProducts(filtered);
+    });
 
-  loadProducts();
-</script>
+    loadProducts();
+  </script>
 </body>
+
 </html>
