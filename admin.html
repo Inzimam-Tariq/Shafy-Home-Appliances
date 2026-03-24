@@ -964,9 +964,9 @@
       status.textContent = 'Uploading…';
       const ext = file.name.split('.').pop();
       const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-      const { data, error } = await db.storage.from('products').upload(path, file, { upsert: true });
+      const { data, error } = await db.storage.from('SHA').upload(path, file, { upsert: true });
       if (error) { status.textContent = 'Upload failed: ' + error.message; return; }
-      const { data: urlData } = db.storage.from('products').getPublicUrl(path);
+      const { data: urlData } = db.storage.from('SHA').getPublicUrl(path);
       document.getElementById('fImage').value = urlData.publicUrl;
       status.textContent = '✓ Uploaded';
       previewImg(urlData.publicUrl);
