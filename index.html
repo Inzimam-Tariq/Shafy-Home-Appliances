@@ -327,16 +327,17 @@
     /* Modal image carousel */
     .modal-carousel {
       position: relative; background: var(--accent-lt);
-      overflow: hidden;
+      overflow: hidden; max-height: 420px;
     }
     .modal-carousel-track {
-      display: flex; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      display: flex; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94); height: 420px;
     }
     .modal-carousel-slide {
-      min-width: 100%; aspect-ratio: 16/9;
+      min-width: 100%; height: 100%;
+      /* aspect-ratio: 16/9; */
     }
     .modal-carousel-slide img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%; height: 100%; object-fit: contain; background: #111;
     }
     .modal-carousel-slide .placeholder {
       width: 100%; height: 100%;
